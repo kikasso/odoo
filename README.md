@@ -13,3 +13,11 @@ docker-compose up -d
 ```shell
 docker-compose stop
 ```
+
+# Install new community App / Module
+```
+1. Unzip module to the Odoo add-ons folder
+2. Re-start Odoo
+3. Turn on the developer mode > Update the apps list
+4. Find the app and install it
+```
