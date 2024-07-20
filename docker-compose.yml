@@ -16,6 +16,7 @@ services:
       - POSTGRES_PASSWORD=odoo
       - POSTGRES_USER=odoo
       - PGDATA=/var/lib/postgresql/data/pgdata
+      - TZ=Europe/Kiev
     ports:
       - "5432:5432"
     volumes:
