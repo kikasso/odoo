@@ -29,3 +29,14 @@ docker-compose up -d --force-recreate
 docker exec -it  odoo-web-1 bash
 odoo --version
 ```
+
+
+# Dump and Restore database
+```
+docker exec -t  odoo-db-1 pg_dump -U odoo odoo_test > ~/var/backup/odoo_test.sql
+
+docker exec -i odoo-db-1 psql -U odoo -d postgres -c "SELECT pg_terminate_backend(pg_stat_activity.pid) FROM pg_stat_activity WHERE pg_stat_activity.datname = 'odoo_test' AND pid <> pg_backend_pid();" && \
+docker exec -i odoo-db-1 psql -U odoo -d postgres -c "DROP DATABASE IF EXISTS odoo_test;" && \
+docker exec -i odoo-db-1 psql -U odoo -d postgres -c "CREATE DATABASE odoo_test WITH OWNER odoo;" && \
+docker exec -i  odoo-db-1 psql -U odoo -d odoo_test < ~/var/backup/odoo_test.sql
+```
