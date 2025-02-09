@@ -21,3 +21,11 @@ docker-compose stop
 3. Turn on the developer mode > Update the apps list
 4. Find the app and install it
 ```
+
+# Update Odoo
+```
+docker-compose pull
+docker-compose up -d --force-recreate
+docker exec -it  odoo-web-1 bash
+odoo --version
+```
